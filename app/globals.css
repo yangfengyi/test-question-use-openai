@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.label {
+  @apply font-mono text-xl mr-4;
+}
+
+.input {
+  @apply px-2 w-[240px] h-10 font-mono text-xl !border border-blue-500;
+}
