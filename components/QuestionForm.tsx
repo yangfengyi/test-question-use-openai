@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function QuestionContent() {
   const [result, setResult] = useState();
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     job: "",
     type: "",
@@ -13,6 +14,7 @@ export default function QuestionContent() {
     if (!form.job || !form.type) {
       return;
     }
+    setLoading(true);
     fetch("/api/openai", {
       method: "POST",
       body: JSON.stringify(form),
@@ -20,6 +22,9 @@ export default function QuestionContent() {
       .then((res) => res.json())
       .then((data) => {
         setResult(data?.result);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -64,7 +69,9 @@ export default function QuestionContent() {
       </div>
       <div className="mt-10 w-[800px] mx-auto border border-pink-300 p-8">
         <h2 className="text-2xl font-bold text-pink-500">RESULT:</h2>
-        <div className="whitespace-pre-wrap text-lg font-mono">{result}</div>
+        <div className="whitespace-pre-wrap text-lg font-mono">
+          {loading ? "loading..." : result}
+        </div>
       </div>
     </>
   );

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     prompt: `Give me ${job} ${type} problem and answer:`,
     max_tokens: 3000,
   });
-  // console.log(completion.data);
+  console.log(completion.data);
   return new Response(
     JSON.stringify({ result: completion.data.choices[0].text })
   );
