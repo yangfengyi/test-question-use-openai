@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     // prompt: `Create a ${type} problem for my interviewe with a ${job} programer:`,
-    prompt: `Give me ${job} ${type} problem and answer:`,
+    prompt: `Give me a ${job} ${type} problem and answer:`,
     max_tokens: 3000,
   });
   console.log(completion.data);
